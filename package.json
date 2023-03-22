@@ -28,6 +28,9 @@
   },
   "homepage": "https://github.com/LBissette/MVC-Tech-Blog#readme",
   "devDependencies": {
-    "@types/express-handlebars": "^6.0.0"
+    "@types/express-handlebars": "^6.0.0",
+    "eslint": "^7.12.1",
+    "eslint-config-prettier": "^6.15.0",
+    "prettier": "^2.8.6"
   }
 }
