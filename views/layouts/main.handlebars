@@ -9,16 +9,15 @@
   </head>
 
   <body>
-    <div class='flex-column justify-space-around'>
+    <div class='flex-column justify-space-around bg-indigo-800'>
       <header class='display-flex justify-space-between align-center p-2'>
-        <h1>
-          <span role='img' aria-label='money'>💸</span>
-          <a href='/'>Fund My Project!</a>
-        </h1>
         <nav>
+          <a href="/">Home</a>
+          <a href="/dashboard">Dashboard</a>
           <!-- Conditionally render login or logout links -->
-          {{#if logged_in}}
-            <a href='/profile'>profile</a>
+          <a href='/login'>Login</a>
+          {{#if user_id}}
+            <a href='/logout'>Logout</a>
             |
             <button class='no-button' id='logout'>logout</button>
           {{else}}

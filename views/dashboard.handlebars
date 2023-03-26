@@ -1,0 +1,15 @@
+<h2>Your Dashboard</h2>
+{{> new-post}}
+
+{{#each blogPosts}}
+    {{#if this.post_id}}
+        {{> comment-card}}
+    {{/if}}
+
+    {{#unless this.post_id}}
+        {{> forum-post}}
+    {{/unless}}
+{{/each}}
+
+<script src="/linkToForumPost.js"></script>
+<script src="/addDelete.js"></script>

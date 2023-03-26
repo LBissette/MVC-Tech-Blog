@@ -20,9 +20,6 @@ BlogPost.init(
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-      validate: {
-        isEmail: true,
-      },
     },
     user_id: {
       type: DataTypes.INTEGER,
@@ -33,10 +30,10 @@ BlogPost.init(
   },
   {
     sequelize,
-    freezeTableName: true,
-    createdAt: 'timestamp',
-    updatedAt: 'false',
+    freezeTableName: true, 
     modelName: 'blog_post',
+    createdAt: 'timestamp',
+    updatedAt: false,
   }
 );
 

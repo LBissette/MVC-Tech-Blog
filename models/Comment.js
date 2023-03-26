@@ -15,9 +15,6 @@ Comment.init(
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-      validate: {
-        isEmail: true,
-      },
     },
     user_id: {
       type: DataTypes.INTEGER,
@@ -29,15 +26,15 @@ Comment.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       unique: true,
-      references: { model: 'blog_post', key: 'id'}
+      references: { model: 'blog_post', key: 'id' },
     },
   },
   {
     sequelize,
     freezeTableName: true,
-    createdAt: 'timestamp',
-    updatedAt: 'false',
     modelName: 'comment',
+    createdAt: 'timestamp',
+    updatedAt: false,
   }
 );
 

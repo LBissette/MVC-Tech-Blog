@@ -1,0 +1,10 @@
+{{#if user_id}}
+    {{> new-post}}
+{{/if}}
+
+{{#each forum_posts}}
+    {{> forum-post}}
+{{/each }}
+
+<script src="/linkToBlogPost.js"></script>
+<script src="/addDelete.js"></script>
