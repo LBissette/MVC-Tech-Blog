@@ -6,16 +6,26 @@ router.get('/', withAuth, async (req, res) => {
   try {
     const getAllBlogPosts = await BlogPost.findAll({
         where: {user_id: req.session.user_id}, 
-        include: Comment,
+        include: User, Comment
     });
     const blogPostsPlain = getAllBlogPosts.map((post) => post.get({ plain: true }));
-
-    res.render("dashboard", { 
-        user_id: req.session.user_id, 
-        blogPosts: blogPostsPlain 
+    
+    const getAllComments = await Comment.findAll({ 
+        where: { user_id: req.session.user_id }, 
+        include: [User, BlogPost] 
     });
+    const commentsPlain = getAllComments.map((comment) => comment.get({ plain: true }));
+    const postsAndComments = blogPostsPlain.concat(commentsPlain).sort((a, b) => {
+        return b.timestamp - a.timestamp;
+    });
+    res.render('dashboard', 
+    { 
+        user_id: req.session.user_id, 
+        loggedIn: req.session.loggedIn,
+        postsAndComments: postsAndComments }
+    );
     } catch (err) {
-        res.send(400).send(err);
+        res.send(err);
     }
 });
 

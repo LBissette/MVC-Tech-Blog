@@ -23,7 +23,7 @@ router.get('/:id', async (req, res) => {
     const commentPlain = getComment.map((comment) => comment.get({ plain: true }));
 
     // res.status(200).json(getBlogPost)
-    res.render("blog-post-page", { user_id: req.session.user_id, forum_post: blogPostPlain, comments: commentPlain });
+    res.render("post", { user_id: req.session.user_id, blog_post: blogPostPlain, comments: commentPlain });
   } catch (err) {
     res.status(400).json(err);
   }
@@ -56,7 +56,6 @@ router.delete('/:id', async (req, res) => {
       res.status(404).json({ message: 'No post found with this id!' });
       return;
     }
-
     res.status(200).json(postData);
   } catch (err) {
     res.status(500).json(err);
