@@ -1,29 +1,32 @@
 const router = require('express').Router();
-const { BlogPost, Comment, User } = require('../../models');
-const bcrypt = require("bcrypt")
-const session = require("express-session")
+const { BlogPost, Comment, User } = require('../../models').default;
+const bcrypt = require('bcrypt');
+const session = require('express-session');
 
-router.get("/", async (req, res) => {
+router.get('/', async (req, res) => {
   try {
-      const users = await User.findAll({ 
-        include: [BlogPost, Comment]
-      });
-      res.json(users);
+    const users = await User.findAll({
+      include: [BlogPost, Comment],
+    });
+    res.json(users);
   } catch (err) {
-      res.status(400).json(err);
+    res.status(400).json(err);
   }
 });
 
-router.get("/id", (req, res) => {
+router.get('/id', (req, res) => {
   res.json(req.session.user_id);
 });
 
-router.get("/:id", async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
-      const user = await User.findByPk(req.params.id, { include: [BlogPost, Comment], attributes: { exclude: "password" } });
-      res.json(user);
+    const user = await User.findByPk(req.params.id, {
+      include: [BlogPost, Comment],
+      attributes: { exclude: 'password' },
+    });
+    res.json(user);
   } catch (err) {
-      res.status(400).json(err);
+    res.status(400).json(err);
   }
 });
 
@@ -39,9 +42,7 @@ router.post('/', async (req, res) => {
       req.session.loggedIn = true;
       req.session.user_id = newUser.id;
 
-    res
-    .status(200)
-    .render('/dashboard');
+      res.status(200).render('/dashboard');
     });
   } catch (err) {
     res.status(400).json(err);
@@ -50,15 +51,13 @@ router.post('/', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try {
-    const userData = await User.findOne({ 
-      where: { 
-        username: req.body.username 
-      }, 
+    const userData = await User.findOne({
+      where: {
+        username: req.body.username,
+      },
     });
     if (!userData) {
-      res
-        .status(404)
-        .json({ message: 'Login failed. Please try again!' });
+      res.status(404).json({ message: 'Login failed. Please try again!' });
       return;
     }
     const validPassword = await bcrypt.compare(
@@ -67,19 +66,14 @@ router.post('/login', async (req, res) => {
     );
 
     if (!validPassword) {
-      res
-      .status(400)
-      .json({ message: 'Login failed. Please try again!' });
+      res.status(400).json({ message: 'Login failed. Please try again!' });
       return;
     }
     req.session.save(() => {
       req.session.loggedIn = true;
       req.session.user_id = userData.id;
-      
-      res
-      .status(200)
-      .render('dashboard');
-      
+
+      res.status(200).render('dashboard');
     });
   } catch (err) {
     res.status(500).json(err);
@@ -90,14 +84,10 @@ router.post('/logout', (req, res) => {
   // When the user logs out, destroy the session
   if (req.session.loggedIn) {
     req.session.destroy(() => {
-      res
-      .status(204)
-      .end();
+      res.status(204).end();
     });
   } else {
-    res
-    .status(404)
-    .end();
+    res.status(404).end();
   }
 });
 

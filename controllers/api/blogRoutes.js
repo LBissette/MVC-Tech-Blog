@@ -1,10 +1,10 @@
 const router = require('express').Router();
-const { BlogPost, Comment, User } = require('../../models');
+const { BlogPost, Comment, User } = require('../../models').default;
 const withAuth = require('../../utils/auth');
 
 router.get('/', async (req, res) => {
   try {
-    const getAllBlogPosts = await BlogPost.findAll({ include: Comment});
+    const getAllBlogPosts = await BlogPost.findAll({ include: Comment });
     res.status(200).json(getAllBlogPosts);
   } catch (err) {
     res.status(400).json(err);
@@ -16,14 +16,21 @@ router.get('/:id', async (req, res) => {
     const getBlogPost = await BlogPost.findByPk(req.params.id, {
       include: [User, Comment],
     });
-    const blogPostPlain = getBlogPost.get({plain : true });
-    const getComment = await Comment.findAll({ 
-      where: { post_id: req.params.id }, 
-      include: [User, BlogPost] });
-    const commentPlain = getComment.map((comment) => comment.get({ plain: true }));
+    const blogPostPlain = getBlogPost.get({ plain: true });
+    const getComment = await Comment.findAll({
+      where: { post_id: req.params.id },
+      include: [User, BlogPost],
+    });
+    const commentPlain = getComment.map((comment) =>
+      comment.get({ plain: true })
+    );
 
     // res.status(200).json(getBlogPost)
-    res.render("post", { user_id: req.session.user_id, blog_post: blogPostPlain, comments: commentPlain });
+    res.render('post', {
+      user_id: req.session.user_id,
+      blog_post: blogPostPlain,
+      comments: commentPlain,
+    });
   } catch (err) {
     res.status(400).json(err);
   }
