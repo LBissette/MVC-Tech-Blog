@@ -1,3 +1,14 @@
-<h2>Your Dashboard</h2>
-<p>hi {{user_id}}</p>
+{{> new-post}}
 
+{{#each postsAndComments}}
+    {{#if this.post_id}}
+        {{> comment}}
+    {{/if}}
+
+    {{#unless this.post_id}}
+        {{> blogpost}}
+    {{/unless}}
+{{/each}}
+
+<script src="/link.js"></script>
+{{!-- <script src="/addDelete.js"></script> --}}

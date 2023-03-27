@@ -4,24 +4,24 @@
     <meta charset='UTF-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
     <title>CMS Blog</title>
-    <link rel='stylesheet' href='/css/jass.css' />
-    <link rel='stylesheet' href='/css/style.css' />
+    <link rel='stylesheet' href='/style.css' />
+      <script src="https://cdn.tailwindcss.com"></script>
   </head>
 
   <body>
-    <div class='flex-column justify-space-around bg-indigo-800'>
-      <header class='display-flex justify-space-between align-center p-2'>
-        <nav>
+    <div class='flex-column justify-center bg-sky-800 text-white'>
+      <header class='display-flex justify-space-between align-center p-2 bg-sky-900'>
+        <nav class="">
           <a href="/">Home</a>
           <a href="/dashboard">Dashboard</a>
           {{#if loggedIn}}
             <a id='logout' href='/api/user/logout'>Logout</a>
           {{else}}
-            <a id='login' href='/login'>login</a>
+            <a id='login' href='/login'>Login</a>
           {{/if}}
         </nav>
       </header>
-      <main class='container container-fluid mt-5'>
+      <main class='container mx-auto'>
         <!-- Render the sub layout -->
         {{{body}}}
       </main>
@@ -31,7 +31,7 @@
     </div>
 
     {{#if loggedIn}}
-      <script src='/js/logout.js'></script>
+      <script src='/logout.js'></script>
     {{/if}}
   </body>
 

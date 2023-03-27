@@ -3,7 +3,12 @@ const { BlogPost, User } = require('../models');
 const withAuth = require('../utils/auth');
 const session = require('express-session')
 
-router.get('/', async (req, res) => {
+
+router.get("/", (req, res) => {
+  res.redirect("/home");
+});
+
+router.get('/home', async (req, res) => {
   try {
 
     const blogPost = await BlogPost.findAll({
@@ -23,10 +28,10 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-  // if (req.session.loggedIn) {
-  //   res.redirect('/');
-  //   return;
-  // }
+  if (req.session.loggedIn) {
+    res.redirect('dashboard');
+    return;
+  }
   res.render('login', {
     user_id: req.session.user_id, 
     loggedIn: req.session.loggedIn

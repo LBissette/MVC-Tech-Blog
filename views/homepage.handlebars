@@ -1,1 +1,13 @@
-<h2>Welcome to the blog!</h2>
+<div class="flex justify-center">
+    <h2 class="bg-slate-800 text-white font-bold text-2xl mt-4 px-20 py-4 rounded-md ">Recent Posts</h2>
+</div>
+
+{{#if user_id}}
+    {{> new-post}}
+{{/if}}
+
+{{#each blogPosts}}
+    {{> blogpost}}
+{{/each }}
+
+<script src="/link.js"></script>

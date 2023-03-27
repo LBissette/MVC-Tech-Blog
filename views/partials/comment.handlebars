@@ -1,0 +1,8 @@
+<div class="mt-4 rounded-md shadow-slate-500 shadow-lg comment" post-id={{blog_post.id}} comment-id={{id}} user-id={{user.id}}>
+    <div class="bg-gray-900 flex justify-start items-center py-2 px-8 w-full text-green-500 rounded-t-md">
+        <p><b>{{user.username}}</b> on {{formatDate timestamp}}</p>
+    </div>
+    <div class="bg-blue-500 text-gray-900 py-3 px-8 font-semibold rounded-b-md relative content-display" style="min-height: 10vh;">
+        {{content}}
+    </div>
+</div>

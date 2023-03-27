@@ -1,0 +1,9 @@
+<div class="mt-4 rounded-md blog-post" post={{id}} user-id={{user.id}}>
+    <div class="bg-slate-800 flex justify-between items-center py-3 px-8 w-full text-white rounded-t-md">
+        <h2 class="font-bold text-lg">{{title}}</h2>
+        <p>Posted by {{user.username}} on {{formatDate timestamp}}</p>
+    </div>
+    <div class="bg-sky-100 text-slate-900 py-3 px-8 font-semibold rounded-b-md relative content-display" style="min-height: 15vh;">
+        {{content}}
+    </div>
+</div>

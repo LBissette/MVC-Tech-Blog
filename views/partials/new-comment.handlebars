@@ -1,0 +1,24 @@
+<form class="mt-4 rounded-md shadow-slate-500 shadow-lg" id="new-comment-form" post-id="{{id}}">
+    <div class="bg-gray-900 flex justify-between items-center py-3 px-8 w-full text-green-500 rounded-t-md">
+        <h2 class="font-bold text-lg">New Comment</h2>
+    </div>
+    <div class="bg-green-500 text-gray-900 py-3 px-8 font-semibold rounded-b-md" style="min-height: 15vh;">
+        <textarea
+            name="new-comment"
+            id="new-comment"
+            rows="5"
+            placeholder="New Comment"
+            class="bg-green-300 rounded-md resize-none w-full py-1 px-2"
+        ></textarea>
+        <div class="flex justify-center">
+
+            <button
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-2"
+                type="submit"
+            >Submit</button>
+        </div>
+    </div>
+
+</form>
+
+<script src="/newComment.js"></script>

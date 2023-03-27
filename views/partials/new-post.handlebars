@@ -1,0 +1,29 @@
+<form class="mt-4 rounded-md" id="new-post-form">
+    <div class="bg-slate-800 flex justify-between items-center py-3 px-8 w-full text-sky-900 rounded-t-md">
+        <input
+            class="border rounded w-full md:w-3/4 lg:w-1/4 py-2 px-3 placeholder:text-gray-400 font-bold text-lg"
+            id="new-post-title"
+            type="text"
+            placeholder="New Post Title"
+        /></div>
+
+    <div class="bg-sky-100 text-sky-900 py-3 px-8 font-semibold rounded-b-md" style="min-height: 15vh;">
+        <textarea
+            name="post-content"
+            id="new-post-content"
+            rows="5"
+            placeholder="New Post Content"
+            class="bg-white rounded-md resize-none w-full py-1 px-2"
+        ></textarea>
+        <div class="flex justify-center">
+
+            <button
+                class="bg-sky-800 hover:bg-sky-900 text-white font-bold py-2 px-4 rounded mt-2"
+                type="submit"
+            >Submit</button>
+        </div>
+    </div>
+
+</form>
+
+<script src="/newPost.js"></script>
